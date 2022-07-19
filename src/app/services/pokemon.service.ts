@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { PokemonDetails } from '../models/pokemon.details';
 import { PokemonList } from '../models/pokemon.list';
 
 @Injectable({
@@ -18,4 +19,9 @@ export class PokemonService {
             map((x: any) => x.results)
         );
   }
+
+  getPokemonDetail(pokemon: number | string): Observable<PokemonDetails> {
+    return this.http.get<PokemonDetails>(this.apiUrl + 'pokemon/' + pokemon);
+  }
+
 }
